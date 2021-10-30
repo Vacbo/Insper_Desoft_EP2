@@ -32,3 +32,9 @@ def inicia_jogo(n_jogadores,pecas_a_distribuir):
     return saida
 
 #print(inicia_jogo(2,cria_pecas()))
+
+def verifica_ganhador(pecas_jogadores):
+    for k in pecas_jogadores:
+        if pecas_jogadores[k]==[]:
+            return k
+    return -1

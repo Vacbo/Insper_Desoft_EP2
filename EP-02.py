@@ -33,8 +33,15 @@ def inicia_jogo(n_jogadores,pecas_a_distribuir):
 
 #print(inicia_jogo(2,cria_pecas()))
 
-def verifica_ganhador(pecas_jogadores):
-    for k in pecas_jogadores:
-        if pecas_jogadores[k]==[]:
+def verifica_ganhador(pecas_de_cada_jogador):
+    for k in pecas_de_cada_jogador:
+        if pecas_de_cada_jogador[k]==[]:
             return k
     return -1
+
+def soma_pecas(pecas_de_um_jogador):
+    soma=0
+    for pecas in pecas_de_um_jogador:
+        for n in pecas:
+            soma+=n
+    return soma

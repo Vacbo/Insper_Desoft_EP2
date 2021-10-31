@@ -45,3 +45,27 @@ def soma_pecas(pecas_de_um_jogador):
         for n in pecas:
             soma+=n
     return soma
+
+def posicoes_possiveis(mesa, pecas_de_um_jogador):
+    posicoes_possiveis=[]
+    valores_pontas_mesa=[]
+    if mesa==[]:
+        for i in range(0,len(pecas_de_um_jogador)):
+            posicoes_possiveis.append(i)
+        return posicoes_possiveis
+    else:
+        valores_pontas_mesa.append(mesa[0][0])
+        valores_pontas_mesa.append(mesa[len(mesa)-1][1])
+        for val in valores_pontas_mesa:
+            for pec in pecas_de_um_jogador:
+                for v in pec:
+                    if val==v:
+                        posicoes_possiveis.append(pecas_de_um_jogador.index(pec))
+        posicoes_possiveis=list(set(posicoes_possiveis))
+        return posicoes_possiveis
+    
+#mesa=[[0,2],[2,1],[1,6],[6,5],[5,0]]
+#pecas=[[1,3],[1,4],[4,6],[2,3],[2,4],[6,6],[2,6]]
+#print(posicoes_possiveis(mesa, pecas))
+
+

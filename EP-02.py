@@ -78,14 +78,14 @@ def adiciona_na_mesa(peca_a_colocar,mesa):
         if peca_a_colocar[1]==valores_pontas_mesa[0]:
             mesa.insert(0,peca_a_colocar)
         elif peca_a_colocar[0]==valores_pontas_mesa[0]:
-            mesa.insert(0,peca_a_colocar.reverse())
+            mesa.insert(0,peca_a_colocar[::-1])
         elif peca_a_colocar[0]==valores_pontas_mesa[1]:
             mesa.insert(len(mesa),peca_a_colocar)
         elif peca_a_colocar[1]==valores_pontas_mesa[1]:
-            mesa.insert(len(mesa),peca_a_colocar.reverse())
+            mesa.insert(len(mesa),peca_a_colocar[::-1])
     return mesa
 
-mesa=[[5,6]]
-peca=[6,0]
+mesa=[[1,6],[6,6]]
+peca=[2,6]
 print(adiciona_na_mesa(peca,mesa))
 

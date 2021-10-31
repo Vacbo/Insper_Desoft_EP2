@@ -68,4 +68,24 @@ def posicoes_possiveis(mesa, pecas_de_um_jogador):
 #pecas=[[1,3],[1,4],[4,6],[2,3],[2,4],[6,6],[2,6]]
 #print(posicoes_possiveis(mesa, pecas))
 
+def adiciona_na_mesa(peca_a_colocar,mesa):
+    valores_pontas_mesa=[]
+    if mesa==[]:
+        mesa.append(peca_a_colocar)
+    else:
+        valores_pontas_mesa.append(mesa[0][0])
+        valores_pontas_mesa.append(mesa[len(mesa)-1][1])
+        if peca_a_colocar[1]==valores_pontas_mesa[0]:
+            mesa.insert(0,peca_a_colocar)
+        elif peca_a_colocar[0]==valores_pontas_mesa[0]:
+            mesa.insert(0,peca_a_colocar.reverse())
+        elif peca_a_colocar[0]==valores_pontas_mesa[1]:
+            mesa.insert(len(mesa),peca_a_colocar)
+        elif peca_a_colocar[1]==valores_pontas_mesa[1]:
+            mesa.insert(len(mesa),peca_a_colocar.reverse())
+    return mesa
+
+mesa=[[5,6]]
+peca=[6,0]
+print(adiciona_na_mesa(peca,mesa))
 

@@ -1,3 +1,5 @@
+#Funções
+
 import random
 def cria_pecas():
     pecas_domino=[]
@@ -85,7 +87,22 @@ def adiciona_na_mesa(peca_a_colocar,mesa):
             mesa.insert(len(mesa),peca_a_colocar[::-1])
     return mesa
 
-mesa=[[1,6],[6,6]]
-peca=[2,6]
-print(adiciona_na_mesa(peca,mesa))
+#mesa=[[1,6],[6,6]]
+#peca=[2,6]
+#print(adiciona_na_mesa(peca,mesa))
 
+#Começo do Jogo
+
+#Texto Inicial
+print('Bem-vindo(a) ao jogo de Dominó!\nO objetivo do jogo é ser o primeiro jogador a ficar sem nenhuma peça na mão.')
+numero_de_jogadores = input('Digite o número de jogadores (2-4):')
+
+#Check se o número de jogadores é válido
+check = False
+while not check:
+    if numero_de_jogadores != '2' and numero_de_jogadores != '3' and numero_de_jogadores != '4':
+        print('Número inválido!')
+        numero_de_jogadores = input('Digite um número de jogadores válido (2-4):')
+    else:
+        check = True
+        print('poggers') #texto placeholder

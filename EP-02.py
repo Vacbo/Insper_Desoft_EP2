@@ -112,10 +112,10 @@ while not check:
 #Função Inicia Jogo
 jogadores_mesa_monte = inicia_jogo(int(numero_de_jogadores), pecas)
 
+#Determina Ordem
 ordem = []
 for j in jogadores_mesa_monte['jogadores']:
     ordem.append(int(j))
-
 random.shuffle(ordem)
 
-print(ordem)
+print('MESA:\n{}'.format(jogadores_mesa_monte['mesa']))

@@ -35,8 +35,9 @@ print('MESA:\n{}'.format(' '.join(jogadores_mesa_monte['mesa'])))
 
 for i in ordem:
     if i == 0:
-        print('Jogador: Você com {} peça(s)\n{1}'.format(len(jogadores_mesa_monte['jogadores'][i])))
+        print('Jogador: Você com {} peça(s)'.format(len(jogadores_mesa_monte['jogadores'][i])))
         pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
+        print('{}'.format(' '.join(jogadores_mesa_monte['jogadores'][i])))
         escolha = int(input('Escolha uma peça:'))
         check = False
         while not check:

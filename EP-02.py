@@ -45,7 +45,7 @@ for i in ordem:
         check = False
         while not check:
             if escolha in pecas_possiveis:
-                adiciona_na_mesa(escolha, jogadores_mesa_monte['mesa'])
+                adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
                 print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
                 check = True
             else:
@@ -55,5 +55,5 @@ for i in ordem:
         print('Jogador: {0} com {1} peça(s)'.format(i+1, len(jogadores_mesa_monte['jogadores'][i])))
         pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
         escolha = random.choice(pecas_possiveis)
-        adiciona_na_mesa(escolha, jogadores_mesa_monte['mesa'])
+        adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
         print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][escolha]))

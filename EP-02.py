@@ -41,11 +41,13 @@ while jogador_com_zero_pecas == -1:
             pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
             if pecas_possiveis == []:
                 if jogadores_mesa_monte['monte'] == []:
-                    print()
+                    print('Não tem peças possíveis. MONTE VAZIO - PULANDO A VEZ!')
+                    break
                 else:
                     print('Não tem peças possíveis. PEGANDO DO MONTE!')
                     press_enter = input('[pressione ENTER]')
                     jogadores_mesa_monte['jogadores'][i].append(jogadores_mesa_monte['monte'][0])
+                    del jogadores_mesa_monte['monte'][0]
                     break
             print(' '.join(str(v) for v in jogadores_mesa_monte['jogadores'][i]))
             escolha = int(input('Escolha uma peça:'))
@@ -63,8 +65,20 @@ while jogador_com_zero_pecas == -1:
         else:
             print('Jogador: {0} com {1} peça(s)'.format(i+1, len(jogadores_mesa_monte['jogadores'][i])))
             pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
+            if pecas_possiveis == []:
+                if jogadores_mesa_monte['monte'] == []:
+                    print('Não tem peças possíveis. MONTE VAZIO - PULANDO A VEZ!')
+                    break
+                else:
+                    print('Não tem peças possíveis. PEGANDO DO MONTE!')
+                    jogadores_mesa_monte['jogadores'][i].append(jogadores_mesa_monte['monte'][0])
+                    del jogadores_mesa_monte['monte'][0]
+                    break
             escolha = random.choice(pecas_possiveis)
             adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
             print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
             del jogadores_mesa_monte['jogadores'][i][escolha]
             jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
+
+#se monte estiver vazio e nenhum jogador puder colocar peças, encerrar
+#bugfix: apertar enter em "escolha uma peça" dá erro

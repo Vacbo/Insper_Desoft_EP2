@@ -50,18 +50,18 @@ while jogador_com_zero_pecas == -1:
                     del jogadores_mesa_monte['monte'][0]
                     break
             print(' '.join(str(v) for v in jogadores_mesa_monte['jogadores'][i]))
-            escolha = int(input('Escolha uma peça:'))
+            escolha = input('Escolha uma peça:')
             check = False
             while not check:
-                if escolha in pecas_possiveis:
-                    adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
-                    print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
-                    del jogadores_mesa_monte['jogadores'][i][escolha]
+                if escolha.isdigit() and int(escolha) in pecas_possiveis:
+                    adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][int(escolha)], jogadores_mesa_monte['mesa'])
+                    print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][int(escolha)]))
+                    del jogadores_mesa_monte['jogadores'][i][int(escolha)]
                     check = True
                     jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
                 else:
                     print('Posição inválida!')
-                    escolha = int(input('Escolha uma peça {}:'.format(pecas_possiveis)))
+                    escolha = input('Escolha uma peça {}:'.format(pecas_possiveis))
         else:
             print('Jogador: {0} com {1} peça(s)'.format(i+1, len(jogadores_mesa_monte['jogadores'][i])))
             pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
@@ -81,4 +81,3 @@ while jogador_com_zero_pecas == -1:
             jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
 
 #se monte estiver vazio e nenhum jogador puder colocar peças, encerrar
-#bugfix: apertar enter em "escolha uma peça" dá erro

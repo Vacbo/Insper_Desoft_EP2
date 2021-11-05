@@ -86,3 +86,13 @@ def adiciona_na_mesa(peca_a_colocar,mesa):
         elif peca_a_colocar[1]==valores_pontas_mesa[1]:
             mesa.insert(len(mesa),peca_a_colocar[::-1])
     return mesa
+
+def empate(dicio):
+    posicoes_possiveis=[]
+    if dicio['monte']==[]:
+        for j in dicio['jogadores']:
+           pp=posicoes_possiveis(dicio['mesa'],dicio['jogadores'][j])
+           posicoes_possiveis.append(pp)
+    if posicoes_possiveis==[]:
+        return 'empatou'
+    return -1

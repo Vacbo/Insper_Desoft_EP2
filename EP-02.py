@@ -35,6 +35,8 @@ jogador_com_zero_pecas = -1
 empatou_jogo = -1
 
 while jogador_com_zero_pecas == -1 or empatou_jogo == -1:
+    if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
+        break
     for i in ordem:
         print('MESA:\n{}'.format(' '.join(str(v) for v in jogadores_mesa_monte['mesa'])))
         if i == 0:

@@ -31,29 +31,53 @@ for j in jogadores_mesa_monte['jogadores']:
     ordem.append(int(j))
 random.shuffle(ordem)
 
-mesa = [[1,6],[4,5]]
-peca = [[1,6]]
-print(posicoes_possiveis(mesa, peca))
+jogador_com_zero_pecas = -1
 
-for i in ordem:
-    print('MESA:\n{}'.format(' '.join(str(v) for v in jogadores_mesa_monte['mesa'])))
-    if i == 0:
-        print('Jogador: Você com {} peça(s)'.format(len(jogadores_mesa_monte['jogadores'][i])))
-        pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
-        print(' '.join(str(v) for v in jogadores_mesa_monte['jogadores'][i]))
-        escolha = int(input('Escolha uma peça:'))
-        check = False
-        while not check:
-            if escolha in pecas_possiveis:
-                adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
-                print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
-                check = True
-            else:
-                print('Posição inválida!')
-                escolha = int(input('Escolha uma peça {}:'.format(pecas_possiveis)))
-    else:
-        print('Jogador: {0} com {1} peça(s)'.format(i+1, len(jogadores_mesa_monte['jogadores'][i])))
-        pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
-        escolha = random.choice(pecas_possiveis)
-        adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
-        print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
+while jogador_com_zero_pecas == -1:
+    for i in ordem:
+        print('MESA:\n{}'.format(' '.join(str(v) for v in jogadores_mesa_monte['mesa'])))
+        if i == 0:
+            print('Jogador: Você com {} peça(s)'.format(len(jogadores_mesa_monte['jogadores'][i])))
+            pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
+            if pecas_possiveis == []:
+                if jogadores_mesa_monte['monte'] == []:
+                    print('Não tem peças possíveis. MONTE VAZIO - PULANDO A VEZ!')
+                    break
+                else:
+                    print('Não tem peças possíveis. PEGANDO DO MONTE!')
+                    press_enter = input('[pressione ENTER]')
+                    jogadores_mesa_monte['jogadores'][i].append(jogadores_mesa_monte['monte'][0])
+                    del jogadores_mesa_monte['monte'][0]
+                    break
+            print(' '.join(str(v) for v in jogadores_mesa_monte['jogadores'][i]))
+            escolha = input('Escolha uma peça:')
+            check = False
+            while not check:
+                if escolha.isdigit() and int(escolha) in pecas_possiveis:
+                    adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][int(escolha)], jogadores_mesa_monte['mesa'])
+                    print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][int(escolha)]))
+                    del jogadores_mesa_monte['jogadores'][i][int(escolha)]
+                    check = True
+                    jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
+                else:
+                    print('Posição inválida!')
+                    escolha = input('Escolha uma peça {}:'.format(pecas_possiveis))
+        else:
+            print('Jogador: {0} com {1} peça(s)'.format(i+1, len(jogadores_mesa_monte['jogadores'][i])))
+            pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
+            if pecas_possiveis == []:
+                if jogadores_mesa_monte['monte'] == []:
+                    print('Não tem peças possíveis. MONTE VAZIO - PULANDO A VEZ!')
+                    break
+                else:
+                    print('Não tem peças possíveis. PEGANDO DO MONTE!')
+                    jogadores_mesa_monte['jogadores'][i].append(jogadores_mesa_monte['monte'][0])
+                    del jogadores_mesa_monte['monte'][0]
+                    break
+            escolha = random.choice(pecas_possiveis)
+            adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
+            print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
+            del jogadores_mesa_monte['jogadores'][i][escolha]
+            jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
+
+#se monte estiver vazio e nenhum jogador puder colocar peças, encerrar

@@ -95,5 +95,4 @@ while jogador_com_zero_pecas == -1 or empatou_jogo == -1:
             if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
                 break
 
-#se monte estiver vazio e nenhum jogador puder colocar peças, encerrar
-#consertar bug do monte vazio pulando a vez, só acontece com 4 players
+#FAZER SCOREBOARD E DECORAR

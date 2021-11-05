@@ -87,12 +87,12 @@ def adiciona_na_mesa(peca_a_colocar,mesa):
             mesa.insert(len(mesa),peca_a_colocar[::-1])
     return mesa
 
-def empate(dicio):
-    posicoes_possiveis=[]
-    if dicio['monte']==[]:
-        for j in dicio['jogadores']:
-           pp=posicoes_possiveis(dicio['mesa'],dicio['jogadores'][j])
+def empate(jogadores_mesa_monte):
+    posicoes=[]
+    if jogadores_mesa_monte['monte']==[]:
+        for j in jogadores_mesa_monte['jogadores']:
+           pp=posicoes_possiveis(jogadores_mesa_monte['mesa'],jogadores_mesa_monte['jogadores'][j])
            posicoes_possiveis.append(pp)
-    if posicoes_possiveis==[]:
+    if posicoes==[]:
         return 'empatou'
     return -1

@@ -88,8 +88,8 @@ def adiciona_na_mesa(peca_a_colocar,mesa):
     return mesa
 
 def empate(jogadores_mesa_monte):
-    posicoes=[]
     if jogadores_mesa_monte['monte']==[]:
+        posicoes=[]
         for j in jogadores_mesa_monte['jogadores']:
            pp=posicoes_possiveis(jogadores_mesa_monte['mesa'],jogadores_mesa_monte['jogadores'][j])
            if not pp==[]:

@@ -38,7 +38,7 @@ while jogador_com_zero_pecas == -1 or empatou_jogo == -1:
     if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
         break
     for i in ordem:
-        print('MESA:\n{}'.format(' '.join(str(v) for v in jogadores_mesa_monte['mesa'])))
+        print('MESA:\n{}\n'.format(' '.join(str(v) for v in jogadores_mesa_monte['mesa'])))
         if i == 0:
             print('Jogador: Você com {} peça(s)'.format(len(jogadores_mesa_monte['jogadores'][i])))
             pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
@@ -58,10 +58,12 @@ while jogador_com_zero_pecas == -1 or empatou_jogo == -1:
             print(' '.join(str(v) for v in jogadores_mesa_monte['jogadores'][i]))
             escolha = input('Escolha uma peça:')
             check = False
+            if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
+                        break
             while not check:
                 if escolha.isdigit() and int(escolha) in pecas_possiveis:
                     adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][int(escolha)], jogadores_mesa_monte['mesa'])
-                    print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][int(escolha)]))
+                    print('Colocou: {}\n'.format(jogadores_mesa_monte['jogadores'][i][int(escolha)]))
                     del jogadores_mesa_monte['jogadores'][i][int(escolha)]
                     check = True
                     jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
@@ -88,11 +90,35 @@ while jogador_com_zero_pecas == -1 or empatou_jogo == -1:
                     continue
             escolha = random.choice(pecas_possiveis)
             adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
-            print('Colocou: {}'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
+            print('Colocou: {}\n'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
             del jogadores_mesa_monte['jogadores'][i][escolha]
             jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
             empatou_jogo = empate(jogadores_mesa_monte)
             if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
                 break
+score_list=[]
+for jogadores in jogadores_mesa_monte['jogadores']:
+    score_list.append(soma_pecas(jogadores_mesa_monte['jogadores'][jogadores]))
+    if jogadores==jogador_com_zero_pecas:
+        if jogadores==0:
+            print('Jogador: Você sem peças e 0 pontos')
+        else:
+            print('Jogador: {0} sem peças e 0 pontos'.format(jogadores+1))
+    else:
+        if jogadores==0:
+            print('Jogador: Você com {1} e {2} pontos'.format(jogadores,jogadores_mesa_monte['jogadores'][jogadores],soma_pecas(jogadores_mesa_monte['jogadores'][jogadores])))
+        else:
+            print('Jogador: {0} com {1} e {2} pontos'.format(jogadores+1,jogadores_mesa_monte['jogadores'][jogadores],soma_pecas(jogadores_mesa_monte['jogadores'][jogadores])))
+menor_score=min(score_list)
+if jogador_com_zero_pecas!=-1:
+    vitoriosos=[jogador_com_zero_pecas]
+else:
+    vitoriosos=[i for i, x in enumerate(score_list) if x == menor_score]
+vitoriosos=[x+1 for x in vitoriosos]
+for v in vitoriosos:
+    if v==1:
+        vitoriosos[vitoriosos.index(v)]='Você'
+print('\n VENCEDOR(ES): {}'.format(*vitoriosos, sep =', '))
 
 #FAZER SCOREBOARD E DECORAR
+#CONSERTAR bug que o jogo acaba qd tem menos de 4 jogadores

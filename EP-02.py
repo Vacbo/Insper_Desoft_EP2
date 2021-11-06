@@ -38,6 +38,8 @@ while jogador_com_zero_pecas == -1 or empatou_jogo == -1:
     if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
         break
     for i in ordem:
+        if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
+            break
         print('MESA:\n{}\n'.format(' '.join(str(v) for v in jogadores_mesa_monte['mesa'])))
         if i == 0:
             print('Jogador: Você com {} peça(s)'.format(len(jogadores_mesa_monte['jogadores'][i])))
@@ -120,5 +122,4 @@ for v in vitoriosos:
         vitoriosos[vitoriosos.index(v)]='Você'
 print('\n VENCEDOR(ES): {}'.format(*vitoriosos, sep =', '))
 
-#FAZER SCOREBOARD E DECORAR
-#CONSERTAR bug que o jogo acaba qd tem menos de 4 jogadores
+#DECORAR

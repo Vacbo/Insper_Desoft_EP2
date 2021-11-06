@@ -94,6 +94,6 @@ def empate(jogadores_mesa_monte):
            pp=posicoes_possiveis(jogadores_mesa_monte['mesa'],jogadores_mesa_monte['jogadores'][j])
            if not pp==[]:
             posicoes.append(pp)
-    if posicoes==[]:
-        return 'empatou'
+        if posicoes==[]:
+            return 'empatou'
     return -1

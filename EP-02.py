@@ -132,7 +132,7 @@ while jogar_dnv =='s':
     for v in vitoriosos:
         if v==1:
             vitoriosos[vitoriosos.index(v)]='Você'
-    print('\n VENCEDOR(ES): {}'.format(*vitoriosos, sep =', '))
+    print('\nVENCEDOR(ES): {}'.format(*vitoriosos, sep =', '))
     print('\n')
     jogar_dnv=input('Quer jogar novamente? Responda sim ou não (s/n).')
 

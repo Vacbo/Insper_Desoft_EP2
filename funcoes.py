@@ -111,4 +111,4 @@ def cria_cores(pecas):
       if peca == pecas[-1]:
           print('\033[37m'+'['+cores[peca[0]]+'\033[37m'+'|'+cores[peca[1]]+'\033[37m'+']')
       else:
-          print(('\033[37m'+'['+cores[peca[0]]+'\033[37m'+'|'+cores[peca[1]]+'\033[37m'+']'),end='')
+          print(('\033[37m'+'['+cores[peca[0]]+'\033[37m'+'|'+cores[peca[1]]+'\033[37m'+']'),end=' ')

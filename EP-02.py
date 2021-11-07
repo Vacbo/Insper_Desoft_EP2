@@ -49,14 +49,14 @@ while jogar_dnv =='s':
                 pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
                 if pecas_possiveis == []:
                     if jogadores_mesa_monte['monte'] == []:
-                        print('Não tem peças possíveis. MONTE VAZIO - PULANDO A VEZ!')
+                        print('Não tem peças possíveis. MONTE VAZIO - PULANDO A VEZ!\n')
                         empatou_jogo = empate(jogadores_mesa_monte)
                         if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
                             break
                         continue
                     else:
                         print('Não tem peças possíveis. PEGANDO DO MONTE!')
-                        press_enter = input('[pressione ENTER]')
+                        press_enter = input('[pressione ENTER]\n')
                         jogadores_mesa_monte['jogadores'][i].append(jogadores_mesa_monte['monte'][0])
                         del jogadores_mesa_monte['monte'][0]
                         continue
@@ -87,14 +87,14 @@ while jogar_dnv =='s':
                 pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
                 if pecas_possiveis == []:
                     if jogadores_mesa_monte['monte'] == []:
-                        print('Não há peças possíveis. MONTE VAZIO - PULANDO A VEZ!')
+                        print('Não há peças possíveis. MONTE VAZIO - PULANDO A VEZ!\n')
                         empatou_jogo = empate(jogadores_mesa_monte)
                         if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
                             break
                         sleep(2.5)
                         continue
                     else:
-                        print('Não há peças possíveis. PEGANDO DO MONTE!')
+                        print('Não há peças possíveis. PEGANDO DO MONTE!\n')
                         jogadores_mesa_monte['jogadores'][i].append(jogadores_mesa_monte['monte'][0])
                         del jogadores_mesa_monte['monte'][0]
                         sleep(2.5)
@@ -135,5 +135,3 @@ while jogar_dnv =='s':
     print('\nVENCEDOR(ES): {}'.format(*vitoriosos, sep =', '))
     print('\n')
     jogar_dnv=input('Quer jogar novamente? Responda sim ou não (s/n).')
-
-#DECORAR e corrigir bug do empate acabar antes do devido tempo

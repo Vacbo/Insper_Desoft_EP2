@@ -6,13 +6,13 @@ from time import *
 #print(adiciona_na_mesa(peca,mesa))
 
 #Começo do Jogo
-jogar_dnv=input('Quer jogar domino?(responda sim ou nao) ')
-while jogar_dnv =='sim':
+jogar_dnv=input('Quer jogar Dominó? Responda sim ou não (s/n).')
+while jogar_dnv =='s':
     #Distribuição de peças
     pecas = cria_pecas()
 
     #Texto Inicial
-    print('Bem-vindo(a) ao jogo de Dominó!\nO objetivo do jogo é ser o primeiro jogador a ficar sem nenhuma peça na mão.')
+    print('Bem-vindo(a) ao jogo de Dominó!\nO objetivo do jogo é ser o primeiro jogador a ficar sem nenhuma peça na mão. O jogador com menos pontos ao final ganha.')
     numero_de_jogadores = input('Digite o número de jogadores (2-4):')
 
     #Check se o número de jogadores é válido
@@ -77,21 +77,24 @@ while jogar_dnv =='sim':
                         sleep(2.5)
                     else:
                         print('Posição inválida!')
+                        sleep(0.5)
                         escolha = input('Escolha uma peça {}:'.format(pecas_possiveis))
             else:
                 print('Jogador {0} com {1} peça(s)'.format(i+1, len(jogadores_mesa_monte['jogadores'][i])))
                 pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
                 if pecas_possiveis == []:
                     if jogadores_mesa_monte['monte'] == []:
-                        print('Não tem peças possíveis. MONTE VAZIO - PULANDO A VEZ!')
+                        print('Não há peças possíveis. MONTE VAZIO - PULANDO A VEZ!')
                         empatou_jogo = empate(jogadores_mesa_monte)
                         if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
                             break
+                        sleep(2.5)
                         continue
                     else:
-                        print('Não tem peças possíveis. PEGANDO DO MONTE!')
+                        print('Não há peças possíveis. PEGANDO DO MONTE!')
                         jogadores_mesa_monte['jogadores'][i].append(jogadores_mesa_monte['monte'][0])
                         del jogadores_mesa_monte['monte'][0]
+                        sleep(2.5)
                         continue
                 escolha = random.choice(pecas_possiveis)
                 adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
@@ -126,8 +129,6 @@ while jogar_dnv =='sim':
             vitoriosos[vitoriosos.index(v)]='Você'
     print('\n VENCEDOR(ES): {}'.format(*vitoriosos, sep =', '))
     print('\n')
-    print(jogador_com_zero_pecas)
-    print(empatou_jogo)
-    jogar_dnv=input('Quer jogar novamente?(responda sim ou nao) ')
+    jogar_dnv=input('Quer jogar novamente? Responda sim ou não (s/n).')
 
 #DECORAR e corrigir bug do empate acabar antes do devido tempo

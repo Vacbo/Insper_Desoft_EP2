@@ -1,4 +1,5 @@
 from funcoes import *
+from time import *
 
 #mesa=[[1,6],[6,6]]
 #peca=[2,6]
@@ -73,6 +74,7 @@ while jogar_dnv =='sim':
                         empatou_jogo = empate(jogadores_mesa_monte)
                         if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
                             break
+                        sleep(2.5)
                     else:
                         print('Posição inválida!')
                         escolha = input('Escolha uma peça {}:'.format(pecas_possiveis))
@@ -99,6 +101,7 @@ while jogar_dnv =='sim':
                 empatou_jogo = empate(jogadores_mesa_monte)
                 if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
                     break
+                sleep(2.5)
     score_list=[]
     for jogadores in jogadores_mesa_monte['jogadores']:
         score_list.append(soma_pecas(jogadores_mesa_monte['jogadores'][jogadores]))
@@ -123,6 +126,8 @@ while jogar_dnv =='sim':
             vitoriosos[vitoriosos.index(v)]='Você'
     print('\n VENCEDOR(ES): {}'.format(*vitoriosos, sep =', '))
     print('\n')
+    print(jogador_com_zero_pecas)
+    print(empatou_jogo)
     jogar_dnv=input('Quer jogar novamente?(responda sim ou nao) ')
 
-#DECORAR
+#DECORAR e corrigir bug do empate acabar antes do devido tempo

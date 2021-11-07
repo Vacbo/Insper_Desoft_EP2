@@ -42,7 +42,8 @@ while jogar_dnv =='s':
         for i in ordem:
             if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
                 break
-            print('MESA:\n{}\n'.format(' '.join(str(v) for v in jogadores_mesa_monte['mesa'])))
+            print('MESA:')
+            cria_cores(jogadores_mesa_monte['mesa'])
             if i == 0:
                 print('Jogador: Você com {} peça(s)'.format(len(jogadores_mesa_monte['jogadores'][i])))
                 pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
@@ -59,7 +60,7 @@ while jogar_dnv =='s':
                         jogadores_mesa_monte['jogadores'][i].append(jogadores_mesa_monte['monte'][0])
                         del jogadores_mesa_monte['monte'][0]
                         continue
-                print(' '.join(str(v) for v in jogadores_mesa_monte['jogadores'][i]))
+                cria_cores(jogadores_mesa_monte['jogadores'][i])
                 escolha = input('Escolha uma peça:')
                 check = False
                 if not jogador_com_zero_pecas == -1 or not empatou_jogo == -1:
@@ -67,7 +68,9 @@ while jogar_dnv =='s':
                 while not check:
                     if escolha.isdigit() and int(escolha) in pecas_possiveis:
                         adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][int(escolha)], jogadores_mesa_monte['mesa'])
-                        print('Colocou: {}\n'.format(jogadores_mesa_monte['jogadores'][i][int(escolha)]))
+                        print('Colocou: ',end="")
+                        cria_cores([jogadores_mesa_monte['jogadores'][i][int(escolha)]])
+                        print()
                         del jogadores_mesa_monte['jogadores'][i][int(escolha)]
                         check = True
                         jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
@@ -98,7 +101,9 @@ while jogar_dnv =='s':
                         continue
                 escolha = random.choice(pecas_possiveis)
                 adiciona_na_mesa(jogadores_mesa_monte['jogadores'][i][escolha], jogadores_mesa_monte['mesa'])
-                print('Colocou: {}\n'.format(jogadores_mesa_monte['jogadores'][i][escolha]))
+                print('Colocou: ',end="")
+                cria_cores([jogadores_mesa_monte['jogadores'][i][escolha]])
+                print()
                 del jogadores_mesa_monte['jogadores'][i][escolha]
                 jogador_com_zero_pecas = verifica_ganhador(jogadores_mesa_monte['jogadores'])
                 empatou_jogo = empate(jogadores_mesa_monte)

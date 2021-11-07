@@ -13,14 +13,16 @@ while jogar_dnv =='s':
 
     #Texto Inicial
     print('Bem-vindo(a) ao jogo de Dominó!\nO objetivo do jogo é ser o primeiro jogador a ficar sem nenhuma peça na mão. O jogador com menos pontos ao final ganha.')
-    numero_de_jogadores = input('Digite o número de jogadores (2-4): \n')
+    numero_de_jogadores = input('Digite o número de jogadores (2-4): ')
+    print()
 
     #Check se o número de jogadores é válido
     check = False
     while not check:
         if numero_de_jogadores != '2' and numero_de_jogadores != '3' and numero_de_jogadores != '4':
             print('Número inválido!')
-            numero_de_jogadores = input('Digite um número de jogadores válido (2-4): \n')
+            numero_de_jogadores = input('Digite um número de jogadores válido (2-4): ')
+            print()
         else:
             check = True
 

@@ -12,7 +12,7 @@ while jogar_dnv =='s':
     pecas = cria_pecas()
 
     #Texto Inicial
-    print('Bem-vindo(a) ao jogo de Dominó!\nO objetivo do jogo é ser o primeiro jogador a ficar sem nenhuma peça na mão. O jogador com menos pontos ao final ganha.')
+    print('Bem-vindo(a) ao jogo de Dominó!\nCada rodada, um dos jogadores escolhe uma das suas peças para adicionar à mesa, se possível, sendo essas peças indicadas por números, começando com zero (se tiver dúvida de quais peças usar, aperte ENTER na sua rodada). O objetivo do jogo é ser o primeiro jogador a ficar sem nenhuma peça na mão. O jogador com menos pontos ao final ganha.')
     numero_de_jogadores = input('Digite o número de jogadores (2-4): ')
     print()
 
@@ -85,7 +85,7 @@ while jogar_dnv =='s':
                         sleep(0.5)
                         escolha = input('Escolha uma peça {}:'.format(pecas_possiveis))
             else:
-                print('Jogador {0} com {1} peça(s)'.format(i+1, len(jogadores_mesa_monte['jogadores'][i])))
+                print('Jogador: {0} com {1} peça(s)'.format(i+1, len(jogadores_mesa_monte['jogadores'][i])))
                 pecas_possiveis = posicoes_possiveis(jogadores_mesa_monte['mesa'], jogadores_mesa_monte['jogadores'][i])
                 if pecas_possiveis == []:
                     if jogadores_mesa_monte['monte'] == []:
